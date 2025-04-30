@@ -1,11 +1,20 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MovementFire : MonoBehaviour
 {
-    [SerializeField] float _Speed;
-    void Update()
+    [SerializeField] private float speed = 5f;
+
+    private Rigidbody2D rb;
+
+    private void Awake()
     {
-        Vector3 vector = new(1, 0, 0);
-        transform.position += _Speed * Time.deltaTime * vector;
+        rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0f;
     }
+
+    private void Update()
+    {
+        rb.linearVelocity = transform.right * speed;
+    }
+
 }
